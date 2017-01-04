@@ -1,0 +1,49 @@
+version: '2'
+services:
+  mongo:
+    image: "mongo:3"
+    volumes:
+      - ./data/mongo:/data/db
+    ports:
+      - "27017:27017"
+  deployer:
+    image: "crafter-deployer:2.5.2"
+    volumes:
+      - ./conf/deployer-conf:/opt/crafter-deployer/conf
+      - ./data/deployer-target:/opt/crafter-deployer/target
+    links:
+      - search
+  search:
+    image: "crafter-search:2.5.2"
+    volumes:
+      - ./data/search-data:/usr/local/tomcat/solr-crafter/data
+    ports:
+      - "8081:8080"
+  profile:
+    image: "crafter-profile:2.5.2"
+    volumes:
+      - ./conf/studio-shared:/usr/local/tomcat/shared
+    links:
+      - mongo
+  social:
+    image: "crafter-social:2.5.2"
+    volumes:
+      - ./conf/studio-shared:/usr/local/tomcat/shared
+    links:
+      - mongo
+  studio:
+    image: "crafter-studio:2.5.2"
+    ports:
+      - "8080:8080"
+      - "8009:8009"
+    volumes:
+      - ./conf/studio-shared:/usr/local/tomcat/shared
+      - ./data/studio-db:/usr/local/tomcat/data/derby
+      - ./data/studio-repo:/usr/local/tomcat/data/repo
+      - ./data/deployer-target:/opt/crafter-deployer/target
+    links:
+      - search
+      - deployer
+      - profile
+      - social
+
