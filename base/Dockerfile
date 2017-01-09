@@ -11,3 +11,6 @@ RUN sed -Ei.back 's/^(shared\.loader\=)$/\1\$\{catalina\.home\}\/shared\/classes
 
 EXPOSE 8080
 EXPOSE 8009
+EXPOSE 8000
+
+CMD ["catalina.sh", "jpda", "run"]
