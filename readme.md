@@ -10,7 +10,7 @@ to reuse the downloaded files and use custom versions such as overlays.
 ## Examples
 Quickly build all images: `./rebuild-all.sh 2.5.2`
 
-To build a specific image: `./build.sh engine 2.5.2`
+To build a specific image: `./build.sh engine 2.5.3-SNAPSHOT`
 
 To build an image using a custom version:
 
@@ -34,7 +34,7 @@ To build an image using a custom version:
 - [Official CrafterCMS Docker images](https://github.com/craftercms/docker)
 
 ## Future Improvements
-- Update the repository URL to support snapshots
+- ~~Update the repository URL to support snapshots~~
 - Update logging configuration to enable debug with a parameter
 - Test deployer image with [newer versions](https://github.com/craftercms/deployer)
 - Use the official Solr image: crafter-search.war seems to be compatible only with Solr 4.x and there are only images for 5.x & 6.x
