@@ -22,7 +22,7 @@ SONATYPE_URL="https://oss.sonatype.org/service/local/artifact/maven/redirect"
 function download {
 	FILE="files/$VERSION/$4"
 	echo "Looking for $FILE"
-	if [[ ! -f $FILE ]]; then
+	if [[ ! -f $FILE || $REPO == "snapshots" ]]; then
 		echo "Downloading $FILE"
 		curl -L -o "$FILE" --create-dirs "$SONATYPE_URL?g=$1&a=$2&v=$VERSION&r=$REPO&p=$3"
 		echo "Done"
